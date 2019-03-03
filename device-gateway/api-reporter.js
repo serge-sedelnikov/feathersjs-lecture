@@ -59,12 +59,11 @@ class Reporter {
      */
     reportSpeed(speed){
         // compose payload for the API
-        const body = {
-            motorId: this.motorId,
+        const data = {
             speed
         }
         // execute API over web socket
-        this.app.service('api/v1/motor_speed').update(body)
+        this.app.service('api/v1/motor-speed').update(this.motorId, data)
         .then(result => {
             debug('Sent updated speed with result:', result);
         })

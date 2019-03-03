@@ -5,11 +5,19 @@ const argv = require('minimist')(process.argv.slice(2));
 // fetch config
 const config = require('config');
 const Motor = require('./motor');
+const Reporter = require('./api-reporter');
 
 // getting device ID either default one or 
 // if given, from config
 const motorId = argv.id || config.get('me').defaultId;
 debug('Fetched the motor Id:', motorId);
+
+// create reporter to connect physical motor with API
+// we split the logic of Motor and Reporter to keep code clean
+// and follow OOP principles
+
+const reporter = new Reporter(motorId);
+reporter.initialize();
 
 // creating and starting the motor.
 const motor = new Motor(motorId);

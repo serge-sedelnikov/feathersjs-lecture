@@ -36,19 +36,18 @@ class Reporter {
         });
 
         socket.on('connect', async () => {
-            debug(`Connected to socket io at ${socketEndpoint}.`);
+            debug(`Connected to socket io at ${this.apiUrl}.`);
             debug('Authenticating device...');
             // trying to authenticate with local storage JWT token
-            app.authenticate({
+            const authResult = await app.authenticate({
                 strategy: 'device',
                 accessToken: this.deviceAuthToken
             });
+            debug(authResult);
         });
 
         app.configure(socketio(socket));
-        app.configure(auth({
-            storage: window.localStorage
-        }));
+        app.configure(auth());
     }
 }
 

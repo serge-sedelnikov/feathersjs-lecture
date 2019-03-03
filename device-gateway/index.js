@@ -13,7 +13,11 @@ debug('Fetched the motor Id:', motorId);
 
 // creating and starting the motor.
 const motor = new Motor(motorId);
-motor.start(25);
+// start motor at the random speed
+const speed = 10 + Math.random() * 90; // from 10 to 100
+motor.start(speed);
+
+// each motor populate the speed on reported callback, subscribe to it to report speed to the API
 
 setTimeout(() => {
     motor.changeSpeed(40);

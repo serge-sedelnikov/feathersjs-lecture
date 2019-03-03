@@ -56,10 +56,12 @@ class Motor {
 
         // we want to emulate speed change over time,
         // lets sat for motor it takes 1 sec to speed up or slow down
-        const speedChangeStep = (newSpeed - this.speed)/100.0;
+        const speedChangeStep = (newSpeed - this.speed)/50.0;
         this.speedChangeInterval = setInterval(() => {
             this.speed += speedChangeStep;
-            if(Math.abs(this.speed - newSpeed) < 1){
+            // we are happy about speed accuracy of 3 rpm
+            // in real life we would decrease the step the closer we are to the target speed
+            if(Math.abs(this.speed - newSpeed) < 3){
                 clearInterval(this.speedChangeInterval);
             }
         }, 100);

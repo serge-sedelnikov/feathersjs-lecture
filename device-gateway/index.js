@@ -14,3 +14,11 @@ debug('Fetched the motor Id:', motorId);
 // creating and starting the motor.
 const motor = new Motor(motorId);
 motor.start(25);
+
+setTimeout(() => {
+    motor.changeSpeed(40);
+}, 3000)
+
+setTimeout(() => {
+    motor.changeSpeed(10);
+}, 4000)

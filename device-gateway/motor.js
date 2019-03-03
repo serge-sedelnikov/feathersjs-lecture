@@ -46,15 +46,21 @@ class Motor {
      * @param {*} newSpeed New speed of the motor.
      */
     changeSpeed(newSpeed){
+
+        // the speed change loop may be still running,
+        // if so, clear it
+        if(this.speedChangeInterval){
+            clearInterval(this.speedChangeInterval);
+            this.speedChangeInterval = null;
+        }
+
         // we want to emulate speed change over time,
         // lets sat for motor it takes 1 sec to speed up or slow down
         const speedChangeStep = (newSpeed - this.speed)/100.0;
-        let iteration = 0;
-        const speedChangeInterval = setInterval(() => {
+        this.speedChangeInterval = setInterval(() => {
             this.speed += speedChangeStep;
-            iteration += 1;
-            if(iteration >= 100){
-                clearInterval(speedChangeInterval);
+            if(Math.abs(this.speed - newSpeed) < 1){
+                clearInterval(this.speedChangeInterval);
             }
         }, 100);
     }

@@ -7,5 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Sergey Sedelnikov",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "config": "3.0.1",
+    "debug": "4.1.1",
+    "dotenv": "6.2.0",
+    "minimist": "1.2.0"
+  }
 }

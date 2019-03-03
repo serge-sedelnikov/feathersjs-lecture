@@ -21,6 +21,8 @@ class Reporter {
         // for testing we use hardcoded line.
         const base64Token = Buffer.from(`${motorId}:some_random_hash_for_production`).toString('base64');
         this.deviceAuthToken = `Device ${base64Token}`;
+
+        this.motorId = motorId;
     }
 
     /**
@@ -48,6 +50,27 @@ class Reporter {
 
         app.configure(socketio(socket));
         app.configure(auth());
+        this.app = app;
+    }
+
+    /**
+     * Reports motor speed to the API backend.
+     * @param {*} speed Speed to be reported.
+     */
+    reportSpeed(speed){
+        // compose payload for the API
+        const body = {
+            motorId: this.motorId,
+            speed
+        }
+        // execute API over web socket
+        this.app.service('api/v1/motor_speed').update(body)
+        .then(result => {
+            debug('Sent updated speed with result:', result);
+        })
+        .catch(err => {
+            debug(err);
+        });
     }
 }
 

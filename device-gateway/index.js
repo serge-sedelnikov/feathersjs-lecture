@@ -26,11 +26,7 @@ const speed = 10 + Math.random() * 90; // from 10 to 100
 motor.start(speed);
 
 // each motor populate the speed on reported callback, subscribe to it to report speed to the API
-
-setTimeout(() => {
-    motor.changeSpeed(40);
-}, 3000)
-
-setTimeout(() => {
-    motor.changeSpeed(10);
-}, 4000)
+motor.onSpeedReported = (newSpeed) => {
+    // reporting speed to the server
+    reporter.reportSpeed(newSpeed);
+}

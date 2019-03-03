@@ -9,7 +9,7 @@ import './App.css';
 class App extends Component {
 
   signInToServer(){
-    const winOpenProps = "toolbar=0,status=0,width=548,height=425";
+    const winOpenProps = "toolbar=1,status=1,width=548,height=425";
     const win = window.open('http://localhost:3030/auth/github', 'Sign In to Feathers', winOpenProps);
     const interval = setInterval(() => {
       if(win.closed){

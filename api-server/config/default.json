@@ -9,7 +9,7 @@
   "authentication": {
     "secret": "4b16c88cdbb9e8a0a43ced6f88c2f5014b1041ce7a20f74d0f0c4c9b6d3ce806c2e946ffef672857e54964848e2a6fbfccfb1208c4652fe416f368d155c80c65784a2d4f6495c5201251fa222bf850fe82d7efad635b1dc0c8689f2f19f45d632e14d92a00ed0d035840f96e3d8fd8b6c0abc619b40b2af07a5aa414f17f08f1dfae0f3e61ce032bf961f8b8bd1715f8c5174be72722ab1bae7352d01c15f10d214652f9fa5aa0f67639e9601580657d3d294d29c138a20ff0e9b1e395fd9a448177e76557edffe39d7b4d2c211bd1bb46dfb8cf53edde2a4bd8bb3c3a8299cd23bd2dbfb4bfc658da667354a7ef3d4d726fbfdd81ae993fa81b989ec4389e83",
     "strategies": [
-      "jwt"
+      "jwt", "device"
     ],
     "path": "/authentication",
     "service": "users",

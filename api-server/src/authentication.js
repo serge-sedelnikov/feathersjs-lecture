@@ -4,6 +4,8 @@ const jwt = require('@feathersjs/authentication-jwt');
 const oauth2 = require('@feathersjs/authentication-oauth2');
 const GithubStrategy = require('passport-github');
 
+const deviceAuthStrategy = require('./authentication/device-auth-strategy');
+
 module.exports = function (app) {
   const config = app.get('authentication');
 
@@ -15,6 +17,9 @@ module.exports = function (app) {
     name: 'github',
     Strategy: GithubStrategy
   }, config.github)));
+
+  // set up device configuration strategy
+  app.configure(deviceAuthStrategy());
 
   // The `authentication` service is used to create a JWT.
   // The before `create` hook registers strategies that can be used

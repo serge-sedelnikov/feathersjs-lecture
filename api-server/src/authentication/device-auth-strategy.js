@@ -1,5 +1,6 @@
 const { Strategy } = require('passport-custom');
 const { ExtractJwt } = require('passport-jwt');
+const debug = require('debug')('App:device-auth');
 
 /**
  * Authenticates the device with the device "secret" token.
@@ -45,6 +46,8 @@ module.exports = function () {
       } else if (req.params.provider === 'rest') {
         token = ExtractJwt.fromAuthHeaderWithScheme('Device')(req);
       }
+
+      debug('Fetched token for the device authentication:', token);   
 
       if (!token) {
         // if no token provided, return empty user.

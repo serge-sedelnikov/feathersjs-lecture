@@ -1,8 +1,8 @@
-
+const authenticate = require('@feathersjs/authentication').hooks.authenticate;
 
 module.exports = {
   before: {
-    all: [],
+    all: [ authenticate(['device']) ],
     find: [],
     get: [],
     create: [],

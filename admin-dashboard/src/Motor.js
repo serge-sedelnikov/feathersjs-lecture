@@ -16,8 +16,9 @@ class MotorComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            speedLogLength: 5
+            speedLogLength: 50
         };
+        this.speedLog = [];
     }
 
     /**
@@ -59,7 +60,7 @@ class MotorComponent extends Component {
 
         return (
             <div>
-                <h3>{id}</h3>
+                <h3 className="display-4">Motor: {id}</h3>
                 <span>{speed.toFixed(2)}</span>
                 <div className="mt-2">
                     <ResponsiveContainer width="100%" height={350}>
@@ -68,8 +69,7 @@ class MotorComponent extends Component {
                             <XAxis dataKey="index" />
                             <YAxis />
                             <Tooltip />
-                            <Legend />
-                            <Line type="monotone" dataKey="speed" stroke="#8884d8" activeDot={{ r: 8 }} />
+                            <Line type="monotone" dataKey="speed" stroke="#118BD6" strokeWidth={3}/>
                         </LineChart>
                     </ResponsiveContainer>
                 </div>

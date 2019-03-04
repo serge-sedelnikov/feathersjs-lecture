@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+// Using CSS
+import '@storaensods/se-design-system/dist/css/styles.css';
 
 import { initializeApiConnection, onMotorSpeedReported } from './utils/api-connect'
 import Motor from './Motor';
@@ -59,7 +61,7 @@ class App extends Component {
     return (
       <div className="container-fluid">
         <code>
-          {authResult ? 'authenticated!' : 'not authenticated'}
+          {!authResult && 'not authenticated'}
         </code>
 
         {motors.map(({ motorId, speed }) => {

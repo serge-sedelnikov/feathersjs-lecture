@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-    LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+    LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip,
     ResponsiveContainer
 } from 'recharts';
 
@@ -69,7 +69,7 @@ class MotorComponent extends Component {
                             <XAxis dataKey="index" />
                             <YAxis />
                             <Tooltip />
-                            <Line type="monotone" dataKey="speed" stroke="#118BD6" strokeWidth={3}/>
+                            <Line type="monotone" dataKey="speed" stroke="#67B419" strokeWidth={3}/>
                         </LineChart>
                     </ResponsiveContainer>
                 </div>

@@ -65,9 +65,16 @@ class App extends Component {
             {!authResult && 'not authenticated'}
           </code>
 
-          {motors.map(({ motorId, speed }) => {
-            return <Motor key={motorId} id={motorId} speed={speed} />
-          })}
+          <div className="row">
+            {motors.map(({ motorId, speed }) => {
+              return (
+                <div key={motorId} className="col-md-6">
+                  <Motor id={motorId} speed={speed} />
+                </div>
+              )
+            })}
+          </div>
+
         </div>
       </div>
     );

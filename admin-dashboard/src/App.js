@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-// Using CSS
-import '@storaensods/se-design-system/dist/css/styles.css';
 
 import { initializeApiConnection, onMotorSpeedReported } from './utils/api-connect'
 import Motor from './Motor';
+import Navigation from './Header';
 
 import './App.css';
 class App extends Component {
@@ -59,14 +58,17 @@ class App extends Component {
   render() {
     const { authResult, motors } = this.state;
     return (
-      <div className="container-fluid">
-        <code>
-          {!authResult && 'not authenticated'}
-        </code>
+      <div>
+        <Navigation />
+        <div className="container-fluid">
+          <code>
+            {!authResult && 'not authenticated'}
+          </code>
 
-        {motors.map(({ motorId, speed }) => {
-          return <Motor key={motorId} id={motorId} speed={speed} />
-        })}
+          {motors.map(({ motorId, speed }) => {
+            return <Motor key={motorId} id={motorId} speed={speed} />
+          })}
+        </div>
       </div>
     );
   }

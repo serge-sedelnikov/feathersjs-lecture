@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { initializeApiConnection, onMotorSpeedReported } from './utils/api-connect'
 
+import { initializeApiConnection, onMotorSpeedReported } from './utils/api-connect'
+import Motor from './Motor';
 
 import './App.css';
 class App extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       authResult: null,
@@ -18,18 +19,32 @@ class App extends Component {
    * @param {*} motorId 
    * @param {*} speed 
    */
-  handleMotorSpeedReported(motorId, speed){
-    this.setState({
-      motors: [
-        {motorId, speed}
-      ]
-    })
+  handleMotorSpeedReported(motorId, speed) {
+
+    const { motors } = this.state;
+    const indexOfMotor = motors.findIndex(motor => motor.motorId === motorId);
+    if (indexOfMotor === -1) {
+      this.setState({
+        motors: [
+          ...motors,
+          { motorId, speed }
+        ]
+      })
+    } else {
+      this.setState({
+        motors: [
+          ...motors.splice(0, indexOfMotor),
+          { motorId, speed },
+          ...motors.splice(indexOfMotor + 1)
+        ]
+      });
+    }
   }
 
   /**
    * Before component mount, connect to API, register callbacks.
    */
-  async componentWillMount(){
+  async componentWillMount() {
     const authResult = await initializeApiConnection();
     this.setState({
       authResult
@@ -47,11 +62,9 @@ class App extends Component {
           {authResult ? 'authenticated!' : 'not authenticated'}
         </code>
 
-        { motors.map(({motorId, speed}) => {
-          return <div key={motorId}>
-            {motorId} {speed}
-          </div>
-        }) }
+        {motors.map(({ motorId, speed }) => {
+          return <Motor id={motorId} speed={speed} />
+        })}
       </div>
     );
   }

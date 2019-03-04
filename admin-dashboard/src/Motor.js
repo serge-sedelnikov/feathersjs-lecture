@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import {
+    LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+    ResponsiveContainer
+} from 'recharts';
 
 /**
  * Renders motor as text and chart.
@@ -9,7 +13,7 @@ class MotorComponent extends Component {
      * Creates an instance of the motor component,
      * @param {*} props 
      */
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             speedLogLength: 5
@@ -19,11 +23,12 @@ class MotorComponent extends Component {
     /**
      * On component updated.
      */
-    componentDidUpdate(){
+    componentDidUpdate() {
+        // we want to store the speed into array for log
         const { speed } = this.props;
         const { speedLogLength } = this.state;
         let newSpeedLog = this.speedLog || [];
-        if(newSpeedLog.length < speedLogLength){
+        if (newSpeedLog.length < speedLogLength) {
             newSpeedLog = [
                 ...newSpeedLog,
                 speed.toFixed(2)
@@ -34,20 +39,40 @@ class MotorComponent extends Component {
                 speed.toFixed(2)
             ]
         }
+        // we don't need to put it into state
+        // as setting state would trigger re-render and this is not allowed in the 
+        // componentDidUpdate method.
+        // this is good anti-pattern if you need to save something into memory without triggering render
         this.speedLog = newSpeedLog;
     }
 
     /**
      * Renders one motor details.
      */
-    render(){
+    render() {
         const { id, speed } = this.props;
         const { speedLog } = this;
+
+        const chartData = speedLog.map((speed, index) => {
+            return { index, speed }
+        } )
+
         return (
             <div>
                 <h3>{id}</h3>
                 <span>{speed.toFixed(2)}</span>
-                <pre>{JSON.stringify(speedLog)}</pre>
+                <div className="mt-2">
+                    <ResponsiveContainer width="100%" height={350}>
+                        <LineChart data={chartData}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="index" />
+                            <YAxis />
+                            <Tooltip />
+                            <Legend />
+                            <Line type="monotone" dataKey="speed" stroke="#8884d8" activeDot={{ r: 8 }} />
+                        </LineChart>
+                    </ResponsiveContainer>
+                </div>
             </div>
         )
     }

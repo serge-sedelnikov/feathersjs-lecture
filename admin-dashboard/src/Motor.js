@@ -3,6 +3,7 @@ import {
     LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip,
     ResponsiveContainer
 } from 'recharts';
+import { Pictogram } from '@storaensods/se-design-system';
 
 /**
  * Renders motor as text and chart.
@@ -56,12 +57,19 @@ class MotorComponent extends Component {
 
         const chartData = speedLog.map((speed, index) => {
             return { index, speed }
-        } )
+        })
 
         return (
             <div>
                 <h3 className="display-4">Motor: {id}</h3>
-                <span>{speed.toFixed(2)}</span>
+
+                <div className="d-inline-flex p-3 bd-highlight">
+                    <div>
+                        <Pictogram name="production_speed" />
+                    </div>
+                    <p className="motor-speed-text">{speed.toFixed(2)}</p>
+                </div>
+
                 <div className="mt-2">
                     <ResponsiveContainer width="100%" height={350}>
                         <LineChart data={chartData}>
@@ -69,7 +77,7 @@ class MotorComponent extends Component {
                             <XAxis dataKey="index" />
                             <YAxis />
                             <Tooltip />
-                            <Line type="monotone" dataKey="speed" stroke="#67B419" strokeWidth={3}/>
+                            <Line type="monotone" dataKey="speed" stroke="#67B419" strokeWidth={3} />
                         </LineChart>
                     </ResponsiveContainer>
                 </div>

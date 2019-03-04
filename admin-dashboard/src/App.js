@@ -63,7 +63,7 @@ class App extends Component {
         </code>
 
         {motors.map(({ motorId, speed }) => {
-          return <Motor id={motorId} speed={speed} />
+          return <Motor key={motorId} id={motorId} speed={speed} />
         })}
       </div>
     );

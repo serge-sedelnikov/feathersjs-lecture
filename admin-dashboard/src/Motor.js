@@ -61,7 +61,7 @@ class MotorComponent extends Component {
 
         return (
             <div>
-                <h3 className="display-4">Motor: {id}</h3>
+                <h3 className="display-4">{id}</h3>
 
                 <div className="d-inline-flex p-3 bd-highlight">
                     <div>

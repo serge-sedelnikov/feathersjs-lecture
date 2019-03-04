@@ -34,9 +34,9 @@ class App extends Component {
     } else {
       this.setState({
         motors: [
-          ...motors.splice(0, indexOfMotor),
+          ...motors.slice(0, indexOfMotor),
           { motorId, speed },
-          ...motors.splice(indexOfMotor + 1)
+          ...motors.slice(indexOfMotor + 1)
         ]
       });
     }

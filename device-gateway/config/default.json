@@ -1,0 +1,8 @@
+{
+    "me":{
+        "defaultId": "Motor1"
+    },
+    "api": {
+        "url": "http://localhost:3030"
+    }
+}

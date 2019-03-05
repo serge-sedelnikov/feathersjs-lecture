@@ -1,0 +1,21 @@
+{
+  "name": "device-gateway",
+  "version": "1.0.0",
+  "description": "Gateway service to emulate motor device.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sergey Sedelnikov",
+  "license": "ISC",
+  "dependencies": {
+    "@feathersjs/authentication-client": "1.0.11",
+    "@feathersjs/feathers": "3.3.1",
+    "@feathersjs/socketio-client": "1.2.1",
+    "config": "3.0.1",
+    "debug": "4.1.1",
+    "dotenv": "6.2.0",
+    "minimist": "1.2.0",
+    "socket.io-client": "2.2.0"
+  }
+}

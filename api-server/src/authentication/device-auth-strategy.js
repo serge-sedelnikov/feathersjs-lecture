@@ -59,16 +59,6 @@ module.exports = function () {
 
       // TODO: find device in the database (with cache)
       // TODO: compare device hashed password to the received password.
-      //   const hashedPassword = 'xxxxxx'; // TODO: this should come from DB from device table.
-      //   const isValid = passwordHasher.validatePassword(
-      //     device.password,
-      //     hashedPassword
-      //   );
-      //   if (!isValid) {
-      //     return done(null, null); // device is invalid
-      //   }
-
-      // TODO: Retrieve device from the Database!
       let res = {
         _id: Date.now(),
         realm: 'device',

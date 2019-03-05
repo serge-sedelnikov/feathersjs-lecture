@@ -55,7 +55,8 @@ export async function initializeApiConnection() {
 export async function sendNewMotorSpeed(motorId, newSpeed){
     // we expect that app is already created by initialization method
     // execute command method
-    await __app.service('api/v1/set-speed').update(motorId, {speed: newSpeed});
+    const commandResult = await __app.service('api/v1/set-speed').update(motorId, {speed: newSpeed});
+    console.log(commandResult);
 }
 
 /**

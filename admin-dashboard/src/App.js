@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { throttle } from 'lodash';
 
 import { initializeApiConnection, onMotorSpeedReported } from './utils/api-connect'
 import Motor from './Motor';
@@ -52,7 +53,8 @@ class App extends Component {
     });
 
     // register the callback to see when motor changes the speed
-    onMotorSpeedReported(this.handleMotorSpeedReported.bind(this));
+    const throttledCallback = throttle(this.handleMotorSpeedReported.bind(this), 200);
+    onMotorSpeedReported(throttledCallback);
   }
 
   render() {

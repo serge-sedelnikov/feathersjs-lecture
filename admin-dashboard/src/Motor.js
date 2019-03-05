@@ -96,7 +96,7 @@ class MotorComponent extends Component {
                 </div>
 
                 <div className="mt-2">
-                    <ResponsiveContainer width="100%" height={350}>
+                    <ResponsiveContainer width="100%" height={250}>
                         <LineChart data={chartData}>
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="index" />

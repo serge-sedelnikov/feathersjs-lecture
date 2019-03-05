@@ -7,6 +7,8 @@ import moment from 'moment';
 import classnames from 'classnames';
 import { Pictogram, Button } from '@storaensods/se-design-system';
 
+import { sendNewMotorSpeed } from './utils/api-connect';
+
 
 /**
  * Renders motor as text and chart.
@@ -53,6 +55,17 @@ class MotorComponent extends Component {
     }
 
     /**
+     * Sends the command to set motor speed with the given difference.
+     * @param {*} speedDiff 
+     */
+    async handleSetMotorSpeed(speedDiff){
+        const { speed, id } = this.props;
+        const newSpeed = Number.isNaN(speedDiff) ? 0 : Math.max(0, Math.round(speed) + speedDiff);
+        // send new speed set request to API.
+        sendNewMotorSpeed(id, newSpeed);
+    }
+
+    /**
      * Renders one motor details.
      */
     render() {
@@ -96,11 +109,11 @@ class MotorComponent extends Component {
 
                     {/* Control buttons */}
                     <div className="ml-3">
-                        <Button type="secondary">-20</Button>
-                        <Button type="secondary">-10</Button>
-                        <Button type="negative">0</Button>
-                        <Button type="secondary">+10</Button>
-                        <Button type="secondary">+20</Button>
+                        <Button onClick={() => this.handleSetMotorSpeed(-20)} type="secondary">-20</Button>
+                        <Button onClick={() => this.handleSetMotorSpeed(-10)} type="secondary">-10</Button>
+                        <Button onClick={() => this.handleSetMotorSpeed(Number.NaN)} type="negative">0</Button>
+                        <Button onClick={() => this.handleSetMotorSpeed(10)} type="secondary">+10</Button>
+                        <Button onClick={() => this.handleSetMotorSpeed(20)} type="secondary">+20</Button>
                     </div>
                     {/* / Control buttons */}
                 </div>

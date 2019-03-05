@@ -6,6 +6,8 @@ import io from "socket.io-client";
 const apiUil = 'http://localhost:3030';
 // array of callbacks to call when motor reported the speed.
 const motorSpeedReportedCallbacks = [];
+// application instance for future usage
+let __app = null;
 
 /**
  * Initializes the connection to API server.
@@ -18,6 +20,7 @@ export async function initializeApiConnection() {
         transports: ['websocket']
     });
     const app = feathers();
+    __app = app;
 
     socket.on('connect', () => {
         console.log(`Connected to socket io at ${socketEndpoint}.`);
@@ -44,6 +47,15 @@ export async function initializeApiConnection() {
     // trying to authenticate with local storage JWT token
     const authResult = await app.authenticate();
     return authResult;
+}
+
+/**
+ * Sends new motor speed value to the API server.
+ */
+export async function sendNewMotorSpeed(motorId, newSpeed){
+    // we expect that app is already created by initialization method
+    // execute command method
+    await __app.service('api/v1/set-speed').update(motorId, {speed: newSpeed});
 }
 
 /**

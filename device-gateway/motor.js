@@ -1,4 +1,5 @@
 const debug = require('debug')('App:Motor');
+const moment = require('moment');
 /**
  * Motor emulator.
  */
@@ -34,11 +35,11 @@ class Motor {
         this.speed = initialSpeed;
 
         this.interval = setInterval(() => {
-            const randomizeSign = Date.now() % 2 === 0;
+            const randomizeSign = new Date().getSeconds() % 2 === 0;
             // randomize speed a bit to emulate the real motor work
             this.speed = this.speed === 0 ? 
             0 : 
-            Math.max(0, this.speed + (randomizeSign ? Math.random() : -Math.random()));
+            Math.max(0, this.speed + (randomizeSign ? Math.random()/3.0 : -Math.random()/3.0));
 
             this.onSpeedReported(this.speed);
         }, 200);

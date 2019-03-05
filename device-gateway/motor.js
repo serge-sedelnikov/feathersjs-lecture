@@ -64,7 +64,9 @@ class Motor {
             this.speed += speedChangeStep;
             // we are happy about speed accuracy of 3 rpm
             // in real life we would decrease the step the closer we are to the target speed
-            if(Math.abs(this.speed - newSpeed) < 3){
+            debug(Math.abs(Math.round(this.speed) - newSpeed))
+            if(Math.abs(Math.round(this.speed) - newSpeed) <= 2){
+                this.speed = newSpeed;
                 clearInterval(this.speedChangeInterval);
             }
         }, 100);

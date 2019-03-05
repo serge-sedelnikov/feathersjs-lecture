@@ -46,11 +46,25 @@ class Reporter {
                 accessToken: this.deviceAuthToken
             });
             debug(authResult);
+            // subscribe for the new speed request command
+            app.service('api/v1/set-speed').on('updated', (data) => {
+                this.onNewSpeedCommandReceived(data.id, data.speed);
+            })
         });
 
         app.configure(socketio(socket));
         app.configure(auth());
         this.app = app;
+    }
+
+    /**
+     * Executes every time someone requests new speed from the motor.
+     * @param {*} id motor ID that is requested to set it's speed.
+     * @param {*} speed new speed of the motor.
+     */
+    onNewSpeedCommandReceived(id, speed){
+        debug('New speed for motor requested');
+        debug(id, speed);
     }
 
     /**

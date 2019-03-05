@@ -30,3 +30,15 @@ motor.onSpeedReported = (newSpeed) => {
     // reporting speed to the server
     reporter.reportSpeed(newSpeed);
 }
+
+// each reporter exposes the callback that is executed every time someone
+// tries to set motor speed
+// callback receives motor speed and motor ID
+// set it up
+reporter.onNewSpeedCommandReceived = (id, speed) => {
+    debug('New speed for motor requested');
+    debug(id, speed);
+    if(motor.motorId === id){
+        motor.changeSpeed(speed);
+    }
+}

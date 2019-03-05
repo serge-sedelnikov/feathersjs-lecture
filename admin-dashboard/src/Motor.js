@@ -5,7 +5,7 @@ import {
 } from 'recharts';
 import moment from 'moment';
 import classnames from 'classnames';
-import { Pictogram } from '@storaensods/se-design-system';
+import { Pictogram, Button } from '@storaensods/se-design-system';
 
 
 /**
@@ -82,17 +82,27 @@ class MotorComponent extends Component {
 
                     {/* Last time updated */}
                     <div className={classnames("d-inline-flex p-1 ml-1 bd-highlight",
-                    {
-                        'success': diffSec < 20,
-                        'warning': diffSec >= 20 && diffSec < 60,
-                        'danger': diffSec >= 60
-                    })}>
+                        {
+                            'success': diffSec < 20,
+                            'warning': diffSec >= 20 && diffSec < 60,
+                            'danger': diffSec >= 60
+                        })}>
                         <div>
                             <Pictogram name="time_reports" />
                         </div>
                         <p className="motor-speed-text">{moment(updateTime).fromNow()}</p>
                     </div>
                     {/* / Last time updated */}
+
+                    {/* Control buttons */}
+                    <div className="ml-3">
+                        <Button type="secondary">-20</Button>
+                        <Button type="secondary">-10</Button>
+                        <Button type="negative">0</Button>
+                        <Button type="secondary">+10</Button>
+                        <Button type="secondary">+20</Button>
+                    </div>
+                    {/* / Control buttons */}
                 </div>
 
                 <div className="mt-2">

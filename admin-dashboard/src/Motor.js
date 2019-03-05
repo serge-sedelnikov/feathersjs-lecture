@@ -61,13 +61,15 @@ class MotorComponent extends Component {
 
         return (
             <div>
-                <h3 className="display-4">{id}</h3>
+                <div className="d-flex align-items-center ml-4">
+                    <h3 className="text-uppercase mr-2">{id}</h3>
 
-                <div className="d-inline-flex p-3 bd-highlight">
-                    <div>
-                        <Pictogram name="production_speed" />
+                    <div className="d-inline-flex p-1 bd-highlight">
+                        <div>
+                            <Pictogram name="production_speed" />
+                        </div>
+                        <p className="motor-speed-text">{speed.toFixed(2)}</p>
                     </div>
-                    <p className="motor-speed-text">{speed.toFixed(2)}</p>
                 </div>
 
                 <div className="mt-2">
@@ -77,7 +79,7 @@ class MotorComponent extends Component {
                             <XAxis dataKey="index" />
                             <YAxis />
                             <Tooltip />
-                            <Line type="monotone" dataKey="speed" stroke="#67B419" strokeWidth={3} />
+                            <Line dot={false} type="monotone" dataKey="speed" stroke="#67B419" strokeWidth={3} />
                         </LineChart>
                     </ResponsiveContainer>
                 </div>

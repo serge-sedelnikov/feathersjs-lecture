@@ -3,13 +3,13 @@
   border: 1px solid #4DA8E1;
 }
 
-.p-3{
-  padding: 0.3rem;
-}
-
 .motor-speed-text{
   margin-left: .5rem;
   font-size: 1.1rem;
   line-height: 3rem;
   margin-bottom: 0;
+}
+
+.text-uppercase {
+  text-transform: uppercase !important;
 }

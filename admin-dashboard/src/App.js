@@ -53,6 +53,10 @@ class App extends Component {
     });
 
     // register the callback to see when motor changes the speed
+    // notice that we here are slowing down the reaction
+    // using lodash throttle function and allow executing
+    // the callback not often than every 200ms
+    // we may loose some motor values but it is OK for overall picture.
     const throttledCallback = throttle(this.handleMotorSpeedReported.bind(this), 200);
     onMotorSpeedReported(throttledCallback);
   }
@@ -67,7 +71,7 @@ class App extends Component {
             {!authResult && 'not authenticated'}
           </code>
 
-          <div className="row">
+          <div className="row mt-2">
             {motors.map(({ motorId, speed }) => {
               return (
                 <div key={motorId} className="col-md-6">

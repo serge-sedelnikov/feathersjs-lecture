@@ -64,6 +64,7 @@ class MotorComponent extends Component {
         });
 
         const mUpdateTime = moment(updateTime);
+        const diffSec = moment().diff(mUpdateTime, 'seconds');
 
         return (
             <div>
@@ -82,9 +83,9 @@ class MotorComponent extends Component {
                     {/* Last time updated */}
                     <div className={classnames("d-inline-flex p-1 ml-1 bd-highlight",
                     {
-                        'success': mUpdateTime.diff(new Date()) < 60,
-                        'warning': mUpdateTime.diff(new Date()) >= 60 && mUpdateTime.diff(new Date()) < 120,
-                        'danger': mUpdateTime.diff(new Date()) >= 120
+                        'success': diffSec < 20,
+                        'warning': diffSec >= 20 && diffSec < 60,
+                        'danger': diffSec >= 60
                     })}>
                         <div>
                             <Pictogram name="time_reports" />

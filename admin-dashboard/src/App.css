@@ -8,12 +8,12 @@
   border: 1px solid #67B419;
 }
 
-.bd-highlight.warning{
+.bd-highlight.danger{
   background-color: #F3C4CA;
   border: 1px solid #CF142B;
 }
 
-.bd-highlight.danger{
+.bd-highlight.warning{
   background-color: #FEE384;
   border: 1px solid #FDC80A;
 }

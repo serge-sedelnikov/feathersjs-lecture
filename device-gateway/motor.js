@@ -36,8 +36,11 @@ class Motor {
         this.interval = setInterval(() => {
             const randomizeSign = Date.now() % 2 === 0;
             // randomize speed a bit to emulate the real motor work
-            this.speed = this.speed + (randomizeSign ? Math.random() : -Math.random())
-            this.onSpeedReported(this.speed)
+            this.speed = this.speed === 0 ? 
+            0 : 
+            Math.max(0, this.speed + (randomizeSign ? Math.random() : -Math.random()));
+
+            this.onSpeedReported(this.speed);
         }, 200);
     }
 

@@ -21,7 +21,7 @@
 .motor-speed-text{
   margin-left: .5rem;
   font-size: 1.1rem;
-  line-height: 3rem;
+  /* line-height: 3rem; */
   margin-bottom: 0;
 }
 

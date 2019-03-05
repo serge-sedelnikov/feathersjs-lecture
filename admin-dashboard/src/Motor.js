@@ -3,7 +3,10 @@ import {
     LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip,
     ResponsiveContainer
 } from 'recharts';
+import moment from 'moment';
+import classnames from 'classnames';
 import { Pictogram } from '@storaensods/se-design-system';
+
 
 /**
  * Renders motor as text and chart.
@@ -20,6 +23,7 @@ class MotorComponent extends Component {
             speedLogLength: 50
         };
         this.speedLog = [];
+
     }
 
     /**
@@ -52,24 +56,42 @@ class MotorComponent extends Component {
      * Renders one motor details.
      */
     render() {
-        const { id, speed } = this.props;
+        const { id, speed, updateTime } = this.props;
         const { speedLog } = this;
 
         const chartData = speedLog.map((speed, index) => {
             return { index, speed }
-        })
+        });
+
+        const mUpdateTime = moment(updateTime);
 
         return (
             <div>
                 <div className="d-flex align-items-center ml-4">
                     <h3 className="text-uppercase mr-2">{id}</h3>
 
+                    {/* Last speed reported */}
                     <div className="d-inline-flex p-1 bd-highlight">
                         <div>
                             <Pictogram name="production_speed" />
                         </div>
                         <p className="motor-speed-text">{speed.toFixed(2)}</p>
                     </div>
+                    {/* /Last speed reported */}
+
+                    {/* Last time updated */}
+                    <div className={classnames("d-inline-flex p-1 ml-1 bd-highlight",
+                    {
+                        'success': mUpdateTime.diff(new Date()) < 60,
+                        'warning': mUpdateTime.diff(new Date()) >= 60 && mUpdateTime.diff(new Date()) < 120,
+                        'danger': mUpdateTime.diff(new Date()) >= 120
+                    })}>
+                        <div>
+                            <Pictogram name="time_reports" />
+                        </div>
+                        <p className="motor-speed-text">{moment(updateTime).fromNow()}</p>
+                    </div>
+                    {/* / Last time updated */}
                 </div>
 
                 <div className="mt-2">

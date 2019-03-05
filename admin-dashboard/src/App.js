@@ -36,7 +36,7 @@ class App extends Component {
       this.setState({
         motors: [
           ...motors.slice(0, indexOfMotor),
-          { motorId, speed },
+          { motorId, speed, updateTime: new Date() },
           ...motors.slice(indexOfMotor + 1)
         ]
       });
@@ -72,10 +72,10 @@ class App extends Component {
           </code>
 
           <div className="row mt-2">
-            {motors.map(({ motorId, speed }) => {
+            {motors.map(({ motorId, speed, updateTime }) => {
               return (
                 <div key={motorId} className="col-md-6">
-                  <Motor id={motorId} speed={speed} />
+                  <Motor id={motorId} speed={speed} updateTime={updateTime} />
                 </div>
               )
             })}

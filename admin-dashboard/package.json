@@ -8,6 +8,7 @@
     "@feathersjs/socketio-client": "1.2.1",
     "@storaensods/se-design-system": "1.2.4",
     "bootstrap": "4.3.1",
+    "classnames": "2.2.6",
     "lodash": "4.17.11",
     "moment": "2.24.0",
     "react": "^16.8.3",

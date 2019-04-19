@@ -1,2 +1,9 @@
-# feathersjs-lecture
-Lecture about Feathure JS source code and examples.
+# Introduction
+
+This project is demonstrating the FeathersJS Socket IO Server and Clients.
+
+# API
+
+# Device Emulator
+
+# User Interface Dashboard

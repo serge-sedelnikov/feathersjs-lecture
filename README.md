@@ -43,4 +43,4 @@ http://localhost:3030/auth/github
 
 Feathers API will redirect you to the github sign in page, it uses OAuth claim-based authentication, your password will never be delivered to the Feathers API, it will receive only your claims like user name and email. 
 
-Once authenticatedm it will store the `authorization token` in the browser local storage and UI will fetch it from there on next restart.
+Once authenticated, it will store the `authorization token` in the browser local storage and UI will fetch it from there on next restart.
